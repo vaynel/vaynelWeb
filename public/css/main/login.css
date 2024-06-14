@@ -1,0 +1,88 @@
+/* Reset default margin and padding */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Body styles */
+body {
+  font-family: 'Inter', sans-serif; /* Google Fonts Inter */
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Form container */
+form.v62_2 {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  width: 320px;
+}
+
+/* Form header */
+span.v62_3 {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Input fields */
+input.v62_4, input.v78_2 {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Login button */
+button.v62_14 {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Password find link */
+span#bt_pwfind.v62_15 {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #007bff; /* Bootstrap's primary color for links */
+  cursor: pointer;
+}
+
+/* Signup link */
+a.v62_16 {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #007bff; /* Bootstrap's primary color for links */
+  text-decoration: none;
+}
+
+/* Remember me checkbox */
+input#rememberMeCheckbox {
+  margin-right: 10px;
+}
+
+label#rememberMeLable {
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+  form.v62_2 {
+    width: 280px;
+  }
+}

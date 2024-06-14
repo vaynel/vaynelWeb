@@ -1,0 +1,19 @@
+
+
+head
+    link(href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet")
+    link(href="/css/openai/test.css" rel="stylesheet")
+    title Document
+    script(src="/js/openAI/openAI.js" defer)  
+
+block content
+  #d0
+    #d1
+      #d11
+        ol#items
+    #d2
+      #d21
+        textarea#msgbox(name="msg", cols="30", rows="10" placeholder="메시지를 입력해주세요.")
+      #d22
+        input#sendBtn(type="button" value="전송")
+        input#csrfToken(type="hidden" name="_csrf" value=csrfToken)

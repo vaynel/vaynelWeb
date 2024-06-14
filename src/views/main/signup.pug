@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    link(href="https://fonts.googleapis.com/css?family=Inter&display=swap", rel="stylesheet")
+    link(href="/css/main/signup.css", rel="stylesheet")
+    script(src="/js/common/axios.js")
+    script(src="/js/user/signup.js" defer)
+
+    title Document
+  body
+    .v40_2
+      span.v40_3 VISION SPACE
+      form.v78_8
+        input(type="text" name="user_id" placeholder="ID").v40_4 
+        input(type="password" name="password" placeholder="PW").v40_6 
+        input(type="text" name="name" placeholder="이름").v40_12 
+        input(type="email" name="email" placeholder="이메일").v40_14 
+        input(type="text" name="department" placeholder="부서").v78_4 
+        input(type="text" name="position" placeholder="직책").v78_6 
+        input(type="hidden" name="_csrf" value=csrfToken)
+      .v78_9
+        button#bt_signup.v40_8 회원가입 
+        a(href="/")#bt_cancle.v40_18 취소

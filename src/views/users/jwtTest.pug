@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    link(href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet")
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+    title Document
+  body
+    form.v62_2
+    button(type="button" onclick="requestData()") Get Protected Data
+
+    script.
+      function requestData() {
+        axios.get('/protected', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        }).then(response => {
+          console.log('보호된 데이터:', response.data);
+          alert('Data retrieved successfully: ' + JSON.stringify(response.data));
+        }).catch(error => {
+          console.error('에러:', error);
+          alert('Error fetching data: ' + error.message);
+        });
+      }

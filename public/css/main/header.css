@@ -1,0 +1,69 @@
+header {
+    /* Assuming .header is a class in your common header */
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Additional header content styles */
+  .v81_9 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .v81_9 button {
+    background-color: #28a745; /* Green color */
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .v81_9 button:hover {
+    background-color: #218838; /* Darker shade of green on hover */
+  }
+  
+  /* Logout button */
+  .v94_3 button {
+    background-color: #dc3545; /* Red color */
+  }
+  
+  .v94_3 button:hover {
+    background-color: #c82333; /* Darker shade of red on hover */
+  }
+  
+  /* Username and menu title styles */
+  #username {
+    font-weight: bold;
+  }
+  
+  .v81_5 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .v80_39 {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .v81_9 {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .v81_9 button {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+  }
+  

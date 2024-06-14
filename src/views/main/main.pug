@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title Board Page
+    link(href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet")
+    link(href="/css/main/main.css" rel="stylesheet")
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+    script(src="/js/common/common.js" defer)  
+  body
+    header.header
+      nav.nav
+        a(href="/homepage") 홈페이지
+        a(href="/board") 게시판
+        a(href="#") 채팅
+        a(href="#") 엑셀
+        a(href="#") 작업
+        button(onclick="logout()") 로그아웃
+        span#username 작업자
+
+    main
+      h1 게시판
+      .board-container
+        // 게시물 목록 예시
+        .board-post
+          h2 게시물 제목
+          p 게시물 내용이 여기에 들어갑니다.
+        .board-post
+          h2 게시물 제목
+          p 게시물 내용이 여기에 들어갑니다.
+        .board-post
+          h2 게시물 제목
+          p 게시물 내용이 여기에 들어갑니다.
+        // 추가적인 게시물들을 원하면 이어서 작성할 수 있습니다.

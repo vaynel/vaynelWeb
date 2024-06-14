@@ -1,0 +1,32 @@
+doctype html
+html
+    head
+        title= title
+        link(href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet")
+        link(href="/css/main/main.css" rel="stylesheet")
+    body
+        .container
+            h1 게시판
+            form(action="/board" method="post" enctype="multipart/form-data")
+                div
+                    label(for="title") 제목:
+                    input(type="text" name="title" required)
+                div
+                    label(for="content") 내용:
+                    textarea(name="content" required)
+                div
+                    label(for="file") 파일 업로드:
+                    input(type="file" name="file")
+                div
+                    button(type="submit") 등록
+            h2 게시글 목록
+            ul
+                each board in boards
+                    li
+                        h3= board.title
+                        p= board.content
+                        form(action=`/board/${board.id}?_method=DELETE` method="post")
+                            button(type="submit") 삭제
+                        a(href=`/board/${board.id}`) 자세히 보기
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        script(src="/js/common/common.js" defer)
