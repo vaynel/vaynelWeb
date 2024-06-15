@@ -1,92 +1,73 @@
-/* Reset default margin and padding */
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-/* Body styles */
+/* main.css */
 body {
-  font-family: 'Inter', sans-serif; /* Google Fonts Inter */
-  background-color: #f0f0f0;
-}
-
-/* Header styles */
-.header {
-  background-color: #007bff; /* Primary color */
-  color: #ffffff;
-  padding: 10px 20px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Navigation styles */
-.nav {
+  font-family: 'Inter', sans-serif;
+  background-color: #e0f7fa;
+  margin: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.diary-container {
+  display: flex;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  height: 600px;
+}
+
+.left-side {
+  background-color: #f8f8f8;
+  padding: 20px;
+  width: 35%;
+  text-align: center;
+  border-right: 2px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left-side h1, .left-side h2 {
+  margin: 10px 0;
+  color: #333;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  background-color: #ddd;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 16px;
-  padding: 10px;
+.profile-pic img {
+  width: 100%;
+  height: auto;
 }
 
-.nav a:hover {
-  text-decoration: underline;
-}
-
-.nav button {
-  background: none;
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.nav button:hover {
-  text-decoration: underline;
-}
-
-/* Main content styles */
-main {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-}
-
-.board-container {
+.profile-info {
+  list-style: none;
+  padding: 0;
+  text-align: left;
   margin-top: 20px;
 }
 
-.board-post {
-  padding: 15px;
-  margin-bottom: 15px;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
+.profile-info li {
+  margin: 10px 0;
+  color: #555;
 }
 
-.board-post h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.board-post p {
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav a, .nav button {
-    margin-bottom: 10px;
-  }
+.right-side {
+  padding: 40px 30px;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

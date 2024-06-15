@@ -3,7 +3,7 @@ html
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title 게시글 목록
+    title 새 게시글 작성
     link(href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet")
     link(href="/css/main/main.css" rel="stylesheet")
     link(href="/css/board/board.css" rel="stylesheet")
@@ -27,11 +27,16 @@ html
       .right-side
         .board-container
           .board-header
-            h2 게시글 목록
-            a.btn-new-post(href="/board/new") 글쓰기
-          ul.post-list
-            each post in boards
-              li.post-item
-                .post-title
-                  a(href=`/board/${post.id}`) #{post.title}
-                .post-meta 작성자: #{post.author} | 작성일: #{post.date}
+            h2 새 게시글 작성
+            a.btn-back(href="/board") 목록으로 돌아가기
+          form.board-form(action="/board", method="POST" enctype="multipart/form-data")
+            .form-group
+              label(for="title") 제목:
+              input#title.form-control(type="text" name="title" placeholder="제목" required)
+            .form-group
+              label(for="content") 내용:
+              textarea#content.form-control(name="content" placeholder="내용" required)
+            .form-group
+              label(for="file") 파일 업로드:
+              input#file.form-control(type="file" name="file")
+            button.btn.btn-primary(type="submit") 등록

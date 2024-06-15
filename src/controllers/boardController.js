@@ -25,6 +25,12 @@ exports.createBoard = async (req, res) => {
     }
 };
 
+// 게시글 생성
+exports.newBoard = async (req, res) => {
+    res.render('boards/newBoard', { csrfToken: req.csrfToken() });
+};
+
+
 // 게시글 목록 조회
 exports.getBoards = async (req, res) => {
     try {
@@ -35,6 +41,7 @@ exports.getBoards = async (req, res) => {
         res.status(500).json({ success: false, message: 'Failed to fetch boards.' });
     }
 };
+
 
 // 게시글 조회
 exports.getBoard = async (req, res) => {

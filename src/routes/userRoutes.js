@@ -7,6 +7,8 @@ const jwt = require('jsonwebtoken');
 
 router.get('/', userController.login);
 
+router.get('/login', userController.login);
+
 
 router.get('/main', (req, res) => {
     res.render('main/main', { title: '회원가입', csrfToken: req.csrfToken() });

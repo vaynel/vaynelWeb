@@ -8,12 +8,15 @@ const boardController = require('../controllers/boardController');
 // })
 
 
-
 // 게시글 생성
 router.post('/', boardController.upload.single('file'), boardController.createBoard);
 
 // 게시글 목록 조회
 router.get('/', boardController.getBoards);
+
+// 게시글 create
+router.get('/new', boardController.newBoard);
+router.post('/new', boardController.createBoard);
 
 // 게시글 조회
 router.get('/:id', boardController.getBoard);
