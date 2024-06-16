@@ -5,15 +5,31 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const jwt = require('jsonwebtoken');
 
+const multer = require('multer');
+const path = require('path');
+
+// 파일 업로드 설정
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/storage/usersProfilePic/');
+    },
+    filename: function (req, file, cb) {
+        const userId = req.body.user_id;
+        const userName = req.body.name;
+        const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+        const fileName = `${date}_${userId}_${userName}${path.extname(file.originalname)}`;
+        cb(null, fileName);
+    }
+});
+const upload = multer({ storage: storage });
+
 router.get('/', userController.login);
 
 router.get('/login', userController.login);
 
-
 router.get('/main', (req, res) => {
     res.render('main/main', { title: '회원가입', csrfToken: req.csrfToken() });
 });
-
 
 router.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json({ message: "Access to protected data successful", data: req.user });
@@ -50,10 +66,10 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-    res.render('main/signup', { title: '회원가입', csrfToken: req.csrfToken() });
+    res.render('main/signup',  { title: '회원가입', csrfToken: req.csrfToken() });
 });
 
-router.post('/signup', userController.addUser)
+router.post('/signup',upload.single('profile_pic'), userController.addUser)
 
 router.get('/jwtTest', (req, res) => {
     res.render('users/jwtTest', { title: '회원가입', csrfToken: req.csrfToken() });
@@ -69,7 +85,6 @@ router.get('/current-user', (req, res) => {
 });
 
 router.post('/reset-password', userController.resetPassword);
-
 
 router.get('/init-users', userController.initUsers);
 

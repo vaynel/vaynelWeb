@@ -1,24 +1,92 @@
 doctype html
 html
   head
-    link(href="https://fonts.googleapis.com/css?family=Inter&display=swap", rel="stylesheet")
-    link(href="/css/main/signup.css", rel="stylesheet")
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title 회원가입 페이지
+    link(href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet")
+    link(href="/css/main/signup.css" rel="stylesheet")
+    link(href="/css/main/main.css" rel="stylesheet")
     script(src="/js/common/axios.js")
     script(src="/js/user/signup.js" defer)
-
-    title Document
+    
   body
-    .v40_2
-      span.v40_3 VISION SPACE
-      form.v78_8
-        input(type="text" name="user_id" placeholder="ID").v40_4 
-        input(type="password" name="password" placeholder="PW").v40_6 
-        input(type="text" name="name" placeholder="이름").v40_12 
-        input(type="email" name="email" placeholder="이메일").v40_14 
-        input(type="text" name="department" placeholder="부서").v78_4 
-        input(type="text" name="position" placeholder="직책").v78_6 
-        input(type="hidden" name="_csrf" value=csrfToken)
-
-      .v78_9
-        button#bt_signup.v40_8 회원가입 
-        a(href="/")#bt_cancle.v40_18 취소
+    .diary-container
+      .left-side
+        h2#diary-name 떙땡의 다이어리
+        .profile-pic
+          img(src="/images/profile-placeholder.png" alt="프로필 사진" id="profile-preview")
+        ul.profile-info 
+          li 생일: <span id="diary-birthday"></span>
+          li 별자리: <span id="diary-zodiac"></span>
+          li MBTI: <span id="diary-mbti"></span>
+          li 번호: <span id="diary-phone"></span>
+      .right-side
+        form.signup-form(action="/signup", method="POST", enctype="multipart/form-data")
+          h2 회원가입
+          .form-group
+            label(for="user_id") 아이디
+            input#user_id.form-control(type="text" name="user_id" placeholder="아이디" required)
+          .form-group
+            label(for="password") 비밀번호
+            input#password.form-control(type="password" name="password" placeholder="비밀번호" required)
+          .form-group
+            label(for="name") 이름
+            input#name.form-control(type="text" name="name" placeholder="이름" required)
+          .form-group
+            label(for="email") 이메일
+            input#email.form-control(type="email" name="email" placeholder="이메일" required)
+          .form-group
+            label(for="gender") 성별
+            select#gender.form-control(name="gender" required)
+              option(value="" disabled selected) 성별 선택
+              option(value="male") 남성
+              option(value="female") 여성
+          .form-group
+            label(for="birthday") 생일
+            input#birthday.form-control(type="date" name="birthday" required)
+          .form-group
+            label(for="zodiac") 별자리
+            select#zodiac.form-control(name="zodiac" required)
+              option(value="" disabled selected) 별자리 선택
+              option(value="aries") 양자리
+              option(value="taurus") 황소자리
+              option(value="gemini") 쌍둥이자리
+              option(value="cancer") 게자리
+              option(value="leo") 사자자리
+              option(value="virgo") 처녀자리
+              option(value="libra") 천칭자리
+              option(value="scorpio") 전갈자리
+              option(value="sagittarius") 사수자리
+              option(value="capricorn") 염소자리
+              option(value="aquarius") 물병자리
+              option(value="pisces") 물고기자리
+          .form-group
+            label(for="mbti") MBTI
+            select#mbti.form-control(name="mbti" required)
+              option(value="" disabled selected) MBTI 선택
+              option(value="INTJ") INTJ
+              option(value="INTP") INTP
+              option(value="ENTJ") ENTJ
+              option(value="ENTP") ENTP
+              option(value="INFJ") INFJ
+              option(value="INFP") INFP
+              option(value="ENFJ") ENFJ
+              option(value="ENFP") ENFP
+              option(value="ISTJ") ISTJ
+              option(value="ISFJ") ISFJ
+              option(value="ESTJ") ESTJ
+              option(value="ESFJ") ESFJ
+              option(value="ISTP") ISTP
+              option(value="ISFP") ISFP
+              option(value="ESTP") ESTP
+              option(value="ESFP") ESFP
+          .form-group
+            label(for="phone") 번호
+            input#phone.form-control(type="tel" name="phone" placeholder="전화번호" required)
+          .form-group
+            label(for="profile_pic") 프로필 사진
+            input#profile_pic.form-control(type="file" name="profile_pic" accept="image/*" required)
+          input(type="hidden" name="_csrf" value=csrfToken)
+          button#bt_signup.btn.btn-primary(type="submit") 회원가입
+          a.btn.btn-secondary(href="/") 취소

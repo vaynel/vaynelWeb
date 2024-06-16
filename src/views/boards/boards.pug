@@ -13,16 +13,14 @@ html
     .diary-container
       input(type="hidden" name="_csrf" value=csrfToken)
       .left-side
-        h2 떙땡의 다이어리
+        h2 #{user.name}의 다이어리
         .profile-pic
-          img(src="/images/profile-placeholder.png" alt="프로필 사진")
+          img(src=`/${user.profilePic}` alt="프로필 사진")
         ul.profile-info
-          li 나이: 
-          li 성별: 
-          li 생일: 
-          li 별자리: 
-          li 혈액형: 
-          li 번호: 
+          li 생일: #{user.birthday}
+          li 별자리: #{user.zodiac}
+          li MBTI: #{user.mbti}
+          li 번호: #{user.phone}
         button.btn.btn-logout#logout-button 로그아웃
       .right-side
         .board-container

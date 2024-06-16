@@ -1,5 +1,6 @@
 // controllers/boardController.js
 const Board = require('../models/board');
+const User = require('../models/users');
 const multer = require('multer');
 
 // 파일 업로드 설정
@@ -30,12 +31,12 @@ exports.newBoard = async (req, res) => {
     res.render('boards/newBoard', { csrfToken: req.csrfToken() });
 };
 
-
-// 게시글 목록 조회
+// 게시글 조회 
 exports.getBoards = async (req, res) => {
     try {
         const boards = await Board.findAll();
-        res.render('boards/boards', { title: '게시판', boards });
+        const user = await User.findByPk(req.user.id); // 로그인한 사용자 정보 가져오기
+        res.render('boards/boards', { title: '게시판', boards, user });
     } catch (error) {
         console.error('Error fetching boards:', error);
         res.status(500).json({ success: false, message: 'Failed to fetch boards.' });
