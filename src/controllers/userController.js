@@ -11,7 +11,8 @@ exports.login = (req, res) => {
 // 회원 추가 
 exports.addUser = async (req, res) => {
     const { user_id, name, password, email, gender, birthday, zodiac, mbti, phone, age, department, position } = req.body;
-    const profilePicPath = req.file ? req.file.path : 'images/profile-placeholder.png';
+    const profilePicPath = req.file ? req.file.path.replace(/^public[\\\/]/, '') : 'images/profile-placeholder.png';
+    console.log(req.file.path)
 
     try {
         // 비밀번호 유효성 검사: 최소 5자 길이 및 특수 문자 최소 2개
