@@ -1,0 +1,77 @@
+name: Node.js CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run database migrations
+      env:
+        DEV_SECRET: ${{ secrets.ENV }}
+      run: echo "$DEV_SECRET" | base64 --decode > .env
+
+    - name: Docker Build & Push to DockerHub
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:latest .
+        docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:latest
+
+    - name: Get GitHub IP
+      id: ip
+      uses: haythem/public-ip@v1.2
+
+    - name: AWS Setting
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+        aws-region: ap-northeast-2
+
+    - name: Add GitHub IP to AWS
+      run: |
+        aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+
+    - name: Copy docker-compose.yml to EC2
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: 22
+        source: "./docker-compose.yml"
+        target: "./your-project-directory"
+
+    - name: Access Server with SSH Key, pull and execute docker-compose image
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: 22
+        script: |
+          cd your-project-directory
+          sudo docker-compose down
+          sudo docker-compose pull
+          sudo docker-compose up -d
+          sudo docker image prune -f
+
+    - name: Remove GitHub IP From Security Group
+      run: |
+        aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
