@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  nodeapp:
+    container_name: node-dev
+    image: ssp67223764/vanyel_web_docker:latest
+    ports:
+      - 3000:3000
+    command: npm run dev # 서버를 시작하는 명령어
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
